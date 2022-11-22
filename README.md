@@ -1,8 +1,17 @@
 # 221121-CloudLv2-FoodDeliveryApp by Won, SangYeon
 
-ㅇ 설계 결과 : https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba38ec02c89720b1
+==================
+===   설계결과   ===
+==================
+MSAEz 로 모델링한 이벤트스토밍 결과:
+https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba38ec02c89720b1
 
 <img width="1054" alt="image" src="https://user-images.githubusercontent.com/19342119/203239121-74d18202-f2e9-432c-ab7b-81c234ad95ab.png">
+
+==================
+===   구현결과   ===
+==================
+각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 request 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하였고, 모든 구현에 있어서 영문으로 사용함
 
 
 [체크포인트-1-Saga]
