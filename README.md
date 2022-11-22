@@ -158,6 +158,25 @@ hystrix:
 기동된  서비스(order)를 호출하여 주문 1건을 요청한다.
 <img width="701" alt="image-20221122154626509" src="https://user-images.githubusercontent.com/19342119/203245299-f8edb245-7214-45ce-af6c-0b86af71d32c.png">
 
+Gateway 설정
+```
+  cloud:
+    gateway:
+      routes:
+        - id: front
+          uri: http://localhost:8081
+          predicates:
+            - Path=/orders/**, /payments/**, 
+        - id: OrderMgmt
+          uri: http://localhost:8082
+          predicates:
+            - Path=/storeOrders/**, 
+        - id: delivery
+          uri: http://localhost:8083
+          predicates:
+            - Path=/deliveries/**, 
+```
+
 끝.
 ============================
 
