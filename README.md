@@ -53,8 +53,7 @@ https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba
 
 
 [체크포인트-3-Compensation / Correlation]
-
-주문거절의 경우에는 결제취소 처리한다.
+- 주문거절의 경우에는 결제취소 처리한다.
 
 <img width="1181" alt="image-20221122115619756" src="https://user-images.githubusercontent.com/19342119/203241098-9dddadd9-07e3-41a9-850b-7ab947d02011.png">
 <img width="1171" alt="image-20221122115744489" src="https://user-images.githubusercontent.com/19342119/203241113-d3bd1dca-83b7-43c3-8e19-42965c2dccdf.png">
@@ -68,7 +67,7 @@ https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba
 
 [체크포인트-4-Request / Response]
 
-주문이 발생하면 결제 된다.
+- 주문이 발생하면 결제 된다.
 
 
 <img width="648" alt="image-20221122101451806" src="https://user-images.githubusercontent.com/19342119/203241238-80cb3455-a218-450f-b103-f66477899258.png">
@@ -77,13 +76,24 @@ https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba
 
 [체크포인트-5-Circuit Breaker]
 
-주문때, 결제오류가 없을 경우에만 주문되게 끔, 검증 로직을 추가
+- 주문때, 결제오류가 없을 경우에만 주문되게 끔, 검증 로직을 추가
 
 <img width="1108" alt="image-20221122111018344" src="https://user-images.githubusercontent.com/19342119/203241372-787560dc-d8f2-4ddc-a20f-617c7dea5b96.png">
 
+```
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 600
+```
+
 [체크포인트-6-Gateway / Ingress]
 
-gateway 마이크로 서비스를 실행한다.
+- gateway 마이크로 서비스를 실행한다.
 
 <img width="887" alt="image-20221122154714521" src="https://user-images.githubusercontent.com/19342119/203245262-957bca8d-b32f-422e-8805-957cfae952c3.png">
 
