@@ -44,46 +44,78 @@ https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 request 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하였고, 모든 구현에 있어서 영문으로 사용함
 
 
-[체크포인트-1-Saga] ------
-
-마이크로 서비스간의 통신에서 이벤트 메세지를 Pub/Sub 하는 방법으로 주문 발생하고 요리 시작 전이면 배달목록에 추가하여 라이더가 배달대상을 확인 할 수 있다.
-
+1. Saga
+ - 마이크로 서비스간의 통신에서 이벤트 메세지를 Pub/Sub 하는 방법으로 주문 발생하고 요리 시작 전이면 배달목록에 추가하여 라이더가 배달대상을 확인 할 수 있다.
 <img width="926" alt="image-20221122101651928" src="https://user-images.githubusercontent.com/19342119/203239698-a8579831-3ffe-469a-8ef5-065a867a4262.png">
+
 <img width="1046" alt="image-20221122102801577" src="https://user-images.githubusercontent.com/19342119/203239750-20dc9d79-abf0-4b56-86f9-01b65ae7e39e.png">
 
-[체크포인트-2-CQRS]
+2. CQRS
+- 딜리버리가 시작 되면 딜리버리 상태가 업데이트 되고 View Model을 통해 확인 할 수 있다.
+```
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenDeliveryStarted_then_update(@Payload DeliveryStarted deliveryStarted) {
+        try {
+            if (!deliveryStarted.validate()) return;
+            Optional<Order> optionalOrder = orderRepository.findById(deliveryStarted.getId());
 
-1. front
+            if( order.isPresent()) {
+                Order order = optionalOrder.get();
+                order.setDeliveryStatus("Started");
+                orderRepository.save(order);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+```
+
+a.front
 
 <img width="900" alt="image-20221122150054327" src="https://user-images.githubusercontent.com/19342119/203239852-3ba3897f-0a38-434a-a902-339d4691117e.png">
 
-2. marketing
+b.marketing
 
 <img width="900" alt="image-20221122150212826" src="https://user-images.githubusercontent.com/19342119/203239895-fc341748-6cc9-41d3-b431-d94d8d42bc85.png">
 
-3. PaymentMgmt
+c. PaymentMgmt
 
 <img width="870" alt="image-20221122150312844" src="https://user-images.githubusercontent.com/19342119/203239943-0ea102e0-d774-4e47-a779-a2948296d5e4.png">
 
-4. DeliveryMgmt
+d. DeliveryMgmt
 
 <img width="896" alt="image-20221122150613281" src="https://user-images.githubusercontent.com/19342119/203240000-bab78c87-ae8b-4c7e-a00c-c787f72b585a.png">
 
-5. OrderMgmt
+e. OrderMgmt
 
 <img width="920" alt="image-20221122150655866" src="https://user-images.githubusercontent.com/19342119/203240050-12ca2c2b-fcfc-4bf2-9549-e352b9850b61.png">
 
-6. FoodMgmt
+f. FoodMgmt
 
 <img width="892" alt="image-20221122150748479" src="https://user-images.githubusercontent.com/19342119/203240113-9e8ea36e-dd60-4d14-b260-acf07bcea76d.png">
 
-7. CustomerService
+g. CustomerService
 
 <img width="886" alt="image-20221122150830579" src="https://user-images.githubusercontent.com/19342119/203240125-f3354da6-9005-4ded-b83a-4b51203d83f5.png">
 
 
-[체크포인트-3-Compensation / Correlation]
-- 주문거절의 경우에는 결제취소 처리한다.
+3. Compensation / Correlation
+- 주문이 취소 되면 해당 food 의 수량을 복원 한다.
+```
+    @StreamListener(value = KafkaProcessor.INPUT, condition = "headers['type']=='OrderCancelled'")
+    public void wheneverOrderCancelled_IncreaseFood(@Payload OrderCancelled orderCancelled) {
+        OrderCancelled event = orderCancelled;
+        Food.increaseFood(event);
+    }
+    
+    
+    public static void increaseFood(OrderCancelled orderCancelled) {
+        FoodRepository().findById(Long.valueOf(orderCancelled.getFoodId())).ifPresent(stock->{
+            stock.setFood(stock.getFood()++);
+            stockRepository().save(Food);
+        });
+    }
+```
 
 <img width="1181" alt="image-20221122115619756" src="https://user-images.githubusercontent.com/19342119/203241098-9dddadd9-07e3-41a9-850b-7ab947d02011.png">
 <img width="1171" alt="image-20221122115744489" src="https://user-images.githubusercontent.com/19342119/203241113-d3bd1dca-83b7-43c3-8e19-42965c2dccdf.png">
@@ -95,17 +127,14 @@ https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba
 <img width="1165" alt="image-20221122121619635" src="https://user-images.githubusercontent.com/19342119/203241163-f51f76a1-be9d-43be-ac93-9abd1e26f323.png">
 
 
-[체크포인트-4-Request / Response]
-
+4. Request / Response
 - 주문이 발생하면 결제 된다.
-
 
 <img width="648" alt="image-20221122101451806" src="https://user-images.githubusercontent.com/19342119/203241238-80cb3455-a218-450f-b103-f66477899258.png">
 <img width="926" alt="image-20221122101651928" src="https://user-images.githubusercontent.com/19342119/203241308-1e613101-2e13-4f94-bc3e-923fe8303119.png">
 
 
-[체크포인트-5-Circuit Breaker]
-
+5. Circuit Breaker
 - 주문때, 결제오류가 없을 경우에만 주문되게 끔, 검증 로직을 추가
 
 <img width="1108" alt="image-20221122111018344" src="https://user-images.githubusercontent.com/19342119/203241372-787560dc-d8f2-4ddc-a20f-617c7dea5b96.png">
@@ -121,8 +150,7 @@ hystrix:
       execution.isolation.thread.timeoutInMilliseconds: 600
 ```
 
-[체크포인트-6-Gateway / Ingress]
-
+6.Gateway / Ingress
 - gateway 마이크로 서비스를 실행한다.
 
 <img width="887" alt="image-20221122154714521" src="https://user-images.githubusercontent.com/19342119/203245262-957bca8d-b32f-422e-8805-957cfae952c3.png">
