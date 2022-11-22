@@ -32,7 +32,31 @@
 <img width="886" alt="image-20221122150830579" src="https://user-images.githubusercontent.com/19342119/203240125-f3354da6-9005-4ded-b83a-4b51203d83f5.png">
 
 
+[체크포인트-3-Compensation / Correlation]
+<img width="1181" alt="image-20221122115619756" src="https://user-images.githubusercontent.com/19342119/203241098-9dddadd9-07e3-41a9-850b-7ab947d02011.png">
+<img width="1171" alt="image-20221122115744489" src="https://user-images.githubusercontent.com/19342119/203241113-d3bd1dca-83b7-43c3-8e19-42965c2dccdf.png">
 
+ㅇ inventory/…/ PolicyHandler.java 의 wheneverOrderCanceled_OrderCancellationNotice method
+<img width="1155" alt="image-20221122121354276" src="https://user-images.githubusercontent.com/19342119/203241143-e5e22f59-30df-4e15-96ce-726f68d1e386.png">
+
+ㅇ StoreOrder.java
+<img width="1165" alt="image-20221122121619635" src="https://user-images.githubusercontent.com/19342119/203241163-f51f76a1-be9d-43be-ac93-9abd1e26f323.png">
+
+
+[체크포인트-4-Request / Response]
+ㅇ 주문이 발생하면 결제 된다.
+<img width="648" alt="image-20221122101451806" src="https://user-images.githubusercontent.com/19342119/203241238-80cb3455-a218-450f-b103-f66477899258.png">
+<img width="926" alt="image-20221122101651928" src="https://user-images.githubusercontent.com/19342119/203241308-1e613101-2e13-4f94-bc3e-923fe8303119.png">
+
+
+[체크포인트-5-Circuit Breaker]
+ㅇ 주문때, 결제오류가 없을 경우에만 주문되게 끔, 검증 로직을 추가
+<img width="1108" alt="image-20221122111018344" src="https://user-images.githubusercontent.com/19342119/203241372-787560dc-d8f2-4ddc-a20f-617c7dea5b96.png">
+
+
+
+
+[체크포인트-6-Gateway / Ingress]
 
 
 
