@@ -44,7 +44,7 @@ https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba
 - 각 서비스내에 도출된 핵심 Aggregate Root 객체를 Entity 로 선언하였다: (예시는 request 마이크로 서비스). 이때 가능한 현업에서 사용하는 언어 (유비쿼터스 랭귀지)를 그대로 사용하였고, 모든 구현에 있어서 영문으로 사용함
 
 
-[체크포인트-1-Saga]
+[체크포인트-1-Saga] ------
 
 마이크로 서비스간의 통신에서 이벤트 메세지를 Pub/Sub 하는 방법으로 주문 발생하고 요리 시작 전이면 배달목록에 추가하여 라이더가 배달대상을 확인 할 수 있다.
 
