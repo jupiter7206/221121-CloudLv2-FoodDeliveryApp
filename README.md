@@ -111,8 +111,8 @@ g. CustomerService
     
     public static void increaseFood(OrderCancelled orderCancelled) {
         FoodRepository().findById(Long.valueOf(orderCancelled.getFoodId())).ifPresent(stock->{
-            stock.setFood(stock.getFood()++);
-            stockRepository().save(Food);
+            Food.setFood(stock.getFood()++);
+            FoodRepository().save(Food);
         });
     }
 ```
