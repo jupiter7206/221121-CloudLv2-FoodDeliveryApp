@@ -1,0 +1,399 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: PaymentMgmt
+  labels:
+    app: PaymentMgmt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: PaymentMgmt
+  template:
+    metadata:
+      labels:
+        app: PaymentMgmt
+    spec:
+      containers:
+        - name: PaymentMgmt
+          image: username/PaymentMgmt:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: OrderMgmt
+  labels:
+    app: OrderMgmt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: OrderMgmt
+  template:
+    metadata:
+      labels:
+        app: OrderMgmt
+    spec:
+      containers:
+        - name: OrderMgmt
+          image: username/OrderMgmt:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: DeliveryMgmt
+  labels:
+    app: DeliveryMgmt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: DeliveryMgmt
+  template:
+    metadata:
+      labels:
+        app: DeliveryMgmt
+    spec:
+      containers:
+        - name: DeliveryMgmt
+          image: username/DeliveryMgmt:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: CustomerService
+  labels:
+    app: CustomerService
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: CustomerService
+  template:
+    metadata:
+      labels:
+        app: CustomerService
+    spec:
+      containers:
+        - name: CustomerService
+          image: username/CustomerService:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketing
+  labels:
+    app: marketing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: marketing
+  template:
+    metadata:
+      labels:
+        app: marketing
+    spec:
+      containers:
+        - name: marketing
+          image: username/marketing:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front
+  labels:
+    app: front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front
+          image: username/front:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: FoodMgmt
+  labels:
+    app: FoodMgmt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: FoodMgmt
+  template:
+    metadata:
+      labels:
+        app: FoodMgmt
+    spec:
+      containers:
+        - name: FoodMgmt
+          image: username/FoodMgmt:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: PaymentMgmt
+  labels:
+    app: PaymentMgmt
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: PaymentMgmt
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: OrderMgmt
+  labels:
+    app: OrderMgmt
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: OrderMgmt
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: DeliveryMgmt
+  labels:
+    app: DeliveryMgmt
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: DeliveryMgmt
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: CustomerService
+  labels:
+    app: CustomerService
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: CustomerService
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: marketing
+  labels:
+    app: marketing
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: marketing
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: front
+  labels:
+    app: front
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: front
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: FoodMgmt
+  labels:
+    app: FoodMgmt
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: FoodMgmt
+

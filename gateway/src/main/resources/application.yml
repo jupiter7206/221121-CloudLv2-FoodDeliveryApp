@@ -1,0 +1,106 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: PaymentMgmt
+          uri: http://localhost:8081
+          predicates:
+            - Path=/payments/**, 
+        - id: OrderMgmt
+          uri: http://localhost:8082
+          predicates:
+            - Path=/storeOrders/**, /preferences/**, 
+        - id: DeliveryMgmt
+          uri: http://localhost:8083
+          predicates:
+            - Path=/deliveries/**, 
+        - id: CustomerService
+          uri: http://localhost:8084
+          predicates:
+            - Path=/notices/**, 
+        - id: marketing
+          uri: http://localhost:8085
+          predicates:
+            - Path=/foodLists/**, 
+        - id: front
+          uri: http://localhost:8086
+          predicates:
+            - Path=/orders/**, /menuboards/**
+        - id: FoodMgmt
+          uri: http://localhost:8087
+          predicates:
+            - Path=/foodLists/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: PaymentMgmt
+          uri: http://paymentMgmt:8080
+          predicates:
+            - Path=/payments/**, 
+        - id: OrderMgmt
+          uri: http://orderMgmt:8080
+          predicates:
+            - Path=/storeOrders/**, /preferences/**, 
+        - id: DeliveryMgmt
+          uri: http://deliveryMgmt:8080
+          predicates:
+            - Path=/deliveries/**, 
+        - id: CustomerService
+          uri: http://customerService:8080
+          predicates:
+            - Path=/notices/**, 
+        - id: marketing
+          uri: http://marketing:8080
+          predicates:
+            - Path=/foodLists/**, 
+        - id: front
+          uri: http://front:8080
+          predicates:
+            - Path=/orders/**, /menuboards/**
+        - id: FoodMgmt
+          uri: http://foodMgmt:8080
+          predicates:
+            - Path=/foodLists/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
