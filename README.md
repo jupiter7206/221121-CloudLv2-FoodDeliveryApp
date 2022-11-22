@@ -2,6 +2,36 @@
 
 ㅇ 설계 결과 : https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba38ec02c89720b1
 
+<img width="1054" alt="image" src="https://user-images.githubusercontent.com/19342119/203239121-74d18202-f2e9-432c-ab7b-81c234ad95ab.png">
+
+
+[체크포인트-1-Saga]
+<img width="926" alt="image-20221122101651928" src="https://user-images.githubusercontent.com/19342119/203239698-a8579831-3ffe-469a-8ef5-065a867a4262.png">
+<img width="1046" alt="image-20221122102801577" src="https://user-images.githubusercontent.com/19342119/203239750-20dc9d79-abf0-4b56-86f9-01b65ae7e39e.png">
+
+[체크포인트-2-CQRS]
+1. front
+<img width="900" alt="image-20221122150054327" src="https://user-images.githubusercontent.com/19342119/203239852-3ba3897f-0a38-434a-a902-339d4691117e.png">
+
+2. marketing
+<img width="900" alt="image-20221122150212826" src="https://user-images.githubusercontent.com/19342119/203239895-fc341748-6cc9-41d3-b431-d94d8d42bc85.png">
+
+3. PaymentMgmt
+<img width="870" alt="image-20221122150312844" src="https://user-images.githubusercontent.com/19342119/203239943-0ea102e0-d774-4e47-a779-a2948296d5e4.png">
+
+4. DeliveryMgmt
+<img width="896" alt="image-20221122150613281" src="https://user-images.githubusercontent.com/19342119/203240000-bab78c87-ae8b-4c7e-a00c-c787f72b585a.png">
+
+5. OrderMgmt
+<img width="920" alt="image-20221122150655866" src="https://user-images.githubusercontent.com/19342119/203240050-12ca2c2b-fcfc-4bf2-9549-e352b9850b61.png">
+
+6. FoodMgmt
+<img width="892" alt="image-20221122150748479" src="https://user-images.githubusercontent.com/19342119/203240113-9e8ea36e-dd60-4d14-b260-acf07bcea76d.png">
+
+7. CustomerService
+<img width="886" alt="image-20221122150830579" src="https://user-images.githubusercontent.com/19342119/203240125-f3354da6-9005-4ded-b83a-4b51203d83f5.png">
+
+
 
 
 
