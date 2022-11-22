@@ -53,10 +53,14 @@
 ㅇ 주문때, 결제오류가 없을 경우에만 주문되게 끔, 검증 로직을 추가
 <img width="1108" alt="image-20221122111018344" src="https://user-images.githubusercontent.com/19342119/203241372-787560dc-d8f2-4ddc-a20f-617c7dea5b96.png">
 
-
-
-
 [체크포인트-6-Gateway / Ingress]
+gateway 마이크로 서비스를 실행한다.
+<img width="887" alt="image-20221122154714521" src="https://user-images.githubusercontent.com/19342119/203245262-957bca8d-b32f-422e-8805-957cfae952c3.png">
+
+기동된  서비스(order)를 호출하여 주문 1건을 요청한다.
+<img width="701" alt="image-20221122154626509" src="https://user-images.githubusercontent.com/19342119/203245299-f8edb245-7214-45ce-af6c-0b86af71d32c.png">
+
+
 
 
 
