@@ -1,4 +1,11 @@
-# 221121-CloudLv2-FoodDeliveryApp
+# 221121-CloudLv2-FoodDeliveryApp by Won, SangYeon
+
+ㅇ 설계 결과 : https://labs.msaez.io/#/storming/WTs9WoCySUU9ZkpGdAqaeqdV0Vm1/a7808e6d08d320caba38ec02c89720b1
+
+
+
+
+
 ![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
 
 # 예제 - 음식배달
